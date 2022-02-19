@@ -1,0 +1,69 @@
+const canvas = document.getElementById("canvas1");
+const ctx = canvas.getContext("2d");
+let currentFrame = 0;
+let gameFrame = 0;
+class Enemy {
+  constructor(gameSpeed, image, frame) {
+    this.x = 0;
+    this.y = 0;
+    this.boxWidth = 293 / 2;
+    this.boxHeight = 155 / 2;
+    this.image = image;
+    this.gameSpeed = gameSpeed;
+    this.limit = {
+      left: 0,
+      right: 800,
+      top: 0,
+      bottom: 700,
+    };
+    this.frame = frame;
+    this.xDirection = "leftToRight";
+    this.yDirection = "topToBottom";
+  }
+  reverse = () => {
+    //X dimension
+    if (this.xDirection === "leftToRight") {
+      if (this.x + this.boxWidth >= this.limit.right) {
+        this.xDirection = "rightToLeft";
+      }
+    } else {
+      if (this.x <= this.limit.left) {
+        return (this.xDirection = "leftToRight");
+      }
+    }
+
+    //Y dimension
+    if (this.yDirection === "topToBottom") {
+      if (this.y + this.boxHeight >= this.limit.bottom) {
+        this.yDirection = "bottomToTop";
+      }
+    } else {
+      if (this.y <= this.limit.top) {
+        this.yDirection = "topToBottom";
+      }
+    }
+  };
+  update = () => {
+    this.xDirection === "leftToRight" ? (this.x += this.gameSpeed) : (this.x -= this.gameSpeed);
+    this.yDirection === "topToBottom" ? (this.y += this.gameSpeed) : (this.y -= this.gameSpeed);
+    if (gameFrame % 2 === 0) {
+      currentFrame >= this.frame.maxFrame - 1 ? (currentFrame = 0) : currentFrame++;
+    }
+    gameFrame++;
+  };
+  draw = () => {
+    ctx.drawImage(
+      this.image,
+      this.frame.frameX * currentFrame,
+      0,
+      this.frame.frameX,
+      this.frame.frameY,
+      this.x,
+      this.y,
+      this.boxWidth,
+      this.boxHeight
+    );
+  };
+}
+
+export default Enemy;

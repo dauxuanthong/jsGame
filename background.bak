@@ -1,0 +1,66 @@
+/*
+const canvas = document.getElementById("canvas1");
+const ctx = canvas.getContext("2d");
+const CANVAS_WIDTH = canvas.width;
+const CANVAS_HEIGHT = canvas.height;
+
+const layer1Src = "img/layer-1.png";
+const layer2Src = "img/layer-2.png";
+const layer3Src = "img/layer-3.png";
+const layer4Src = "img/layer-4.png";
+const layer5Src = "img/layer-5.png";
+
+let gameSpeed = 10;
+let gameFrame = 0;
+//declare image
+const backgroundLayer1 = new Image();
+backgroundLayer1.src = layer1Src;
+const backgroundLayer2 = new Image();
+backgroundLayer2.src = layer2Src;
+const backgroundLayer3 = new Image();
+backgroundLayer3.src = layer3Src;
+const backgroundLayer4 = new Image();
+backgroundLayer4.src = layer4Src;
+const backgroundLayer5 = new Image();
+backgroundLayer5.src = layer5Src;
+
+class Layer {
+  constructor(image, speedModifier) {
+    this.x = 0;
+    this.y = 0;
+    this.width = 2400;
+    this.height = 700;
+    this.image = image;
+    this.speedModifier = speedModifier;
+    this.speed = gameSpeed * this.speedModifier;
+  }
+  update = () => {
+    this.speed = gameSpeed * this.speedModifier;
+    this.x = (gameFrame * this.speed) % this.width;
+  };
+  draw = () => {
+    ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+    ctx.drawImage(this.image, this.x + this.width, this.y, this.width, this.height);
+  };
+}
+
+const Layer1 = new Layer(backgroundLayer1, 0.2);
+const Layer2 = new Layer(backgroundLayer2, 0.4);
+const Layer3 = new Layer(backgroundLayer3, 0.6);
+const Layer4 = new Layer(backgroundLayer4, 0.8);
+const Layer5 = new Layer(backgroundLayer5, 1);
+
+const gameLayers = [Layer1, Layer2, Layer3, Layer4, Layer5];
+
+const backgroundAnimate = () => {
+  ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+  gameLayers.forEach((layer) => {
+    layer.update();
+    layer.draw();
+  });
+  gameFrame--;
+  requestAnimationFrame(backgroundAnimate);
+};
+
+export { backgroundAnimate };
+*/
